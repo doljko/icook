@@ -6,6 +6,8 @@
   try{
       $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $password);
       echo "Database connected..";
+
+      
   } catch(PDOException $e){
       exit('Database error');
   }

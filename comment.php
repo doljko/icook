@@ -6,27 +6,25 @@ require("config/database.php");
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                      </button>
-              <a class="navbar-brand" href="#" ><img src="dinner/logo.jpg"  style="width:45px;height:33px;"></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#" ><img src="dinner/logo.jpg"  style="width:45px;height:33px;"></a>
     </div>
 
     <div class="collapse navbar-collapse" id="myNavbar">
-    
-              <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Нүүр</a></li>
-                  <li><a href="#">Бидний тухай</a></li>
-                  <li><a href="#">Жор оруулах</a></li>
-                  <li><a href="#">Мэдээ мэдээлэл</a></li>
-                  <li><a href="#">Холбоо барих</a></li>
-                  <li><a href="#">Шинэ хэрэглэгч нэмэх</a></li>
-              </ul>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Нүүр</a></li>
+        <li><a href="#">Бидний тухай</a></li>
+        <li><a href="#">Жор оруулах</a></li>
+        <li><a href="#">Мэдээ мэдээлэл</a></li>
+        <li><a href="#">Холбоо барих</a></li>
+        <li><a href="#">Шинэ хэрэглэгч нэмэх</a></li>
+      </ul>
     </div>
-
-    </div>
+  </div>
 </nav>
        
 
