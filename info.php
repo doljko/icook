@@ -32,7 +32,7 @@
    </iframe>
 </div>
 
-<div class="container text-center">    
+<div class="">    
         <h3>Мэдээ мэдээлэл</h3>
         <br>
 
@@ -68,42 +68,11 @@
                     <input type="text" name="search" placeholder="..">
                   </form>
     </div>
-
-    <style>
-                            .pagination2>li>a{
-                              
-                              position: relative;
-                              float: left;
-                              padding: 6px 12px;
-                              margin-left: -1px;
-                              line-height: 1.42857143;
-                              color: #1a1a1b;
-                              text-decoration: none;
-                              background-color: #fff;
-                              border: 1px solid #ddd;
-
-                            }
-
-                            input[type=text] {
-                            width: 130px;
-                            box-sizing: border-box;
-                            border: 2px solid #ccc;
-                            border-radius: 4px;
-                            font-size: 16px;
-                            background-color: white;
-                            background-image: url('searchicon.png');
-                            background-position: 10px 10px;
-                            background-repeat: no-repeat;
-                            padding: 12px 20px 12px 40px;
-                            -webkit-transition: width 0.4s ease-in-out;
-                            transition: width 0.4s ease-in-out;
-                        }
-
-    </style>
-  <ul class="list-style-type:none pagination2" align="center" >
+              
+  <ul class="pagination2" align="center" >
                 <li><a href="#">«</a></li>
                 <li><a href="#">1</a></li>
-                <li><a class="active" href="#">2</a></li>
+                <li><a class="active" href="#">2</a></li>c
                 <li><a href="#">3</a></li>
                 <li><a href="#">4</a></li>
                 <li><a href="#">5</a></li>
