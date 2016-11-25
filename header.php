@@ -26,10 +26,11 @@
       <ul class="nav navbar-nav">
           <li ><a href="index.php">Нүүр</a></li>
           <li><a href="aboutus.php">Бидний тухай</a></li>
-          <li><a href="#">Жор оруулах</a></li>
-          <li><a href="#">Мэдээ мэдээлэл</a></li>
-          <li><a href="#">Холбоо барих</a></li>
-          <li><a href="#">Шинэ хэрэглэгч нэмэх</a></li>
+          <li><a href="jor.php">Жор оруулах</a></li>
+          <li><a href="info.php">Мэдээ мэдээлэл</a></li>
+          <li><a href="contest.php">Уралдаан, тэмцээн</a></li>
+          <li><a href="contact.php">Холбоо барих</a></li>
+        
       </ul>
     </div>
 

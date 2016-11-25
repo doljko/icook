@@ -1,75 +1,90 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- 
-</head>
-<body>
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>                        
-                      </button>
-              <a class="navbar-brand" href="#" ><img src="dinner/logo.jpg"  style="width:45px;height:33px;"></a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="myNavbar">
-    
-              <ul class="nav navbar-nav">
-                  <li class="active"><a href="#">Нүүр</a></li>
-                  <li><a href="#">Бидний тухай</a></li>
-                  <li><a href="#">Жор оруулах</a></li>
-                  <li><a href="#">Мэдээ мэдээлэл</a></li>
-                  <li><a href="#">Холбоо барих</a></li>
-                  <li><a href="#">Шинэ хэрэглэгч нэмэх</a></li>
-              </ul>
-    </div>
-
-    </div>
-</nav>
-                    <div id="ad">
-                       <iframe
-                          src="ad.html"
-                          border="0"
-                          scrolling="no"
-                          allowtransparency="true"
-                          width="100%"
-                          height="100%"
-                          style="border:0;">
-                       </iframe>
-                    </div>
-                    <div id="map" style="width:100%;height:500px"></div>
-
-<script>
-function myMap() {
-  var mapCanvas = document.getElementById("map");
-  var mapOptions = {
-    center: new google.maps.LatLng(51.5, -0.2),
-    zoom: 10
-  }
-  var map = new google.maps.Map(mapCanvas, mapOptions);
-}
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+<?php 
+require("header.php");
+?>  
+<div class=" text-center">    
+    <img  src="public/img/7.jpg" alt="">
+</div>
 <br>
-<address align= "center">
-Менежер<a href="mailto:webmaster@example.com">Jon Doe</a>.<br>
-Бидэнтэй нэгдээрэй:<br>
-Example.com<br>
-Баянгол дүүрэг<br>
-Улаанбаатар
-</address>
 
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d10696.609118423159!2d106.8339728!3d47.9140909!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5d96932a2567248b%3A0xe8aafcfa72fd3d3f!2z06jQvdOp0YAg0KXQvtGA0L7QvtC70L7Quw!5e0!3m2!1smn!2smn!4v1480085857914" width="1400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+<br><br>
+
+<div class="row">
+    <form method="post" action="/mn/contact" role="form">
+<div class="col-sm-4">
+<div class="form-group">
+	<div class="input-group">
+			<div class="input-group-addon"><i class="fa fa-user"></i></div>
+			<input type="text" class="form-control" name="name" value="" placeholder="Овог Нэр *">
+	</div>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+		<input type="text" class="form-control" name="email" value="" placeholder="И-мэйл *">
+</div>
+
+<div class="field-notice" rel="email"></div>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-addon"><i class="fa fa-home"></i></div>
+		<textarea class="form-control" name="address" placeholder="Хаяг, Шуудангийн дугаар, Хот"></textarea></div>
+	<div class="field-notice" rel="address"></div>
+</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-addon"><i class="fa fa-phone"></i></div>
+		<input type="text" class="form-control" name="phone" value="" placeholder="Утас."></div>
+	<div class="field-notice" rel="phone"></div>
+</div>
+</div>
+
+
+<div class="col-sm-5">
+	<div class="form-group">
+		<div class="input-group">
+			<div class="input-group-addon"><i class="fa fa-question"></i></div>
+			<input type="text" class="form-control" name="subject" value="" placeholder="Сэдэв *"></div>
+	<div class="field-notice" rel="subject"></div>
+	</div>
+
+<div class="form-group">
+	<div class="input-group">
+		<div class="input-group-addon"><i class="fa fa-quote-left"></i></div>
+		<textarea class="form-control" name="msg" placeholder="Зурвас *" rows="4"></textarea></div>
+	<div class="field-notice" rel="msg"></div>
+</div> 
+
+<div class="form-group form-inline">
+	<div class="input-group mb5">
+		<div class="input-group-addon"><i class="fa fa-lock"></i></div>
+		<input type="text" class="form-control" name="captcha" id="captcha" value="" placeholder="Код хуулах *">
+	</div>
+	
+		<a href="#" onclick="document.getElementById('captcha_image').src = '/includes/securimage/securimage_show.php?sid=' + Math.random(); return false"> <i class="fa fa-refresh"></i></a>
+	<div class="field-notice" rel="captcha"></div>
+</div>   
+
+<div class="form-group row">
+	<span class="col-sm-12"><button type="submit" class="btn btn-primary" name="send"><i class="fa fa-send"></i> Илгээх</button> <i> * Талбаруудыг бөглөнө үү</i></span>
+</div>
+</div>
+                </form>
+</div>
+<div>
+	<h3>Биднийг дага Facegroup oruuulna</h3>
+	</div>
+
+	<div>
+		<h3>Холбоо барих utas email oruuulna</h3>
+	</div>
+
+<center>
 <?php 
 require("footer.php");
 ?>
+</center>

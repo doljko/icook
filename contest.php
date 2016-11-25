@@ -22,7 +22,7 @@
 <hr>
 <div class="col-sm-12">   
   <div class="col-sm-9">
-    <img  src="public/img/1.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
+    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
       <h4>  
           <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
       </h4>
@@ -32,7 +32,7 @@
         </p>       
  </div>    
  <div class="col-sm-9">
-    <img  src="public/img/1.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
+    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
       <h4>  
           <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
       </h4>
@@ -87,7 +87,7 @@
     </ul>
 <center>
   <br>
-  <p><span class="error"><b>ЭНЭ тагыг авахаар хөлний саарал дээш яваад байгаа юмаа.</b></span></p>
+  <p><span class="error"><b>ЭНЭ тагыг авахаар хөлний саарал дээш яваад байгаа юмаа ххэ.</b></span></p>
       
 </center>
 <br>
