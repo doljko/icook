@@ -1,202 +1,76 @@
-<?php 
-require("header.php");
-?>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>jQuery Ajax Comment System - Demo</title>
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/script.js"></script>
+</head>
+<body>
+	<div class="wrap">
+		<h1>jQuery Ajax Comment System</h1>
+	<?php
+		// retrive post
+		include('config/config.php');
+		include ('function.php');
+		dbConnect();
+		
+		$query = mysqli_query(
+			'SELECT *
+			FROM post
+			WHERE post_id = 1');
+		$row = mysqli_fetch_array($query);
+	?>
+		<div class="post">
+			<h2><?php echo $row['post_title']?></h2>
+			<p><?php echo $row['post_body']?></p>
+		</div>
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-    </ol>
+	<?php
+		// retrive comments with post id
+		$comment_query = mysqli_query(
+			"SELECT *
+			FROM comment
+			WHERE post_id = {$row['post_id']}
+			ORDER BY comment_id DESC
+			LIMIT 15");
+	?>
 
-    <!-- Wrapper for slides -->
-<div class="carousel-inner" role="listbox">
-  <div class="item active">
-    <img src="public/img/1.jpg" alt="Image" style="height:400px;"> 
-      <div class="carousel-caption">
-        <h3>Амт, үнэр, тансаг хоол</h3>
-          <p>Шилдэг амт, шинэлэг санаа бүхнийг та манай сайтаас үзээрэй.</p>
-      </div>      
-</div>
+		<h2>Comments.....</h2>
+		<div class="comment-block">
+		<?php while($comment = mysqli_fetch_array($comment_query)): ?>
+			<div class="comment-item">
+				<div class="comment-avatar">
+					<img src="<?php echo avatar($comment['mail']) ?>" alt="avatar">
+				</div>
+				<div class="comment-post">
+					<h3><?php echo $comment['name'] ?> <span>said....</span></h3>
+					<p><?php echo $comment['comment']?></p>
+				</div>
+			</div>
+		<?php endwhile?>
+		</div>
 
-<div class="item">
-  <img  src="public/img/2.jpg" alt="Image" style="height:400px;">
-    <div class="carousel-caption">
-        <h3>Амт</h3>
-          <p>Шилдэг амт, шинэлэг санаа бүхнийг та манай сайтаас үзээрэй.</p>
-  </div>      
-</div>
-
-<div class="item">
-  <img  src="public/img/3.jpg" alt="Image" style="height:400px;">
-      <div class="carousel-caption">
-        <h3>Амт</h3>
-         <p>Шилдэг амт, шинэлэг санаа бүхнийг та манай сайтаас үзээрэй.</p>
-      </div>      
-</div>
-
-<div class="item">
-   <img  src="public/img/3.jpg" alt="Image" style="height:400px;">
-         <div class="carousel-caption">
-            <h3>Амт</h3>
-                <p>Шилдэг амт, шинэлэг санаа бүхнийг та манай сайтаас үзээрэй.</p>
-        </div>      
-  </div>
-</div>
-
-
-    <!-- Left and right controls -->
-          <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Өмнөх</span>
-          </a>
-          <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Дараах</span>
-          </a>
-</div>
-  
-<div class="container text-center">    
-        <h3>Мэдээ мэдээлэл</h3><br>
-
- 
-  <div class="row">
-    <div class="col-sm-3">
-
-          <h3><b>АНГИЛАЛ</b></h3>
-
-                        <ul style="list-style-type:none " align="left">
-                            <li>Хоол</li>
-                            <li>Зууш</li>
-                            <li>Хачир</li>
-                            <li>Пицца</li>
-                            <li>Нарийн боов</li>
-                            <li>Амттан</li>
-                            <li>Сүмс</li>
-                            <li>Дарсан бүтээгдэхүүн</li>
-                            <li>Уух зүйлс</li>
-                            <li>Кофе</li>
-                            <li>Үндсэн хоол</li>
-                            <li>Түргэн хоол</li>
-                        </ul>
-
-          <h3><b>ГАЛ ТОГОО</b></h3>
-
-                        <ul style="list-style-type:none " align="left">
-                            <li>Хоол</li>
-                            <li>Зууш</li>
-                            <li>Хачир</li>
-                            <li>Пицца</li>
-                            <li>Нарийн боов</li>
-                            <li>Амттан</li>
-                            <li>Сүмс</li>
-                            <li>Дарсан бүтээгдэхүүн</li>
-                            <li>Уух зүйлс</li>
-                            <li>Кофе</li>
-                            <li>Үндсэн хоол</li>
-                            <li>Түргэн хоол</li>
-                        </ul>
-
-
-          <h3><b>ШОШГО</b></h3>
-
-                        <ul style="list-style-type:none " align="left">
-                            <li>Хоол</li>
-                            <li>Зууш</li>
-                            <li>Хачир</li>
-                            <li>Пицца</li>
-                            <li>Нарийн боов</li>
-                            <li>Амттан</li>
-                            <li>Сүмс</li>
-                            <li>Дарсан бүтээгдэхүүн</li>
-                            <li>Уух зүйлс</li>
-                            <li>Кофе</li>
-                            <li>Үндсэн хоол</li>
-                            <li>Түргэн хоол</li>
-                        </ul>
-    </div>
-
-<div class="col-sm-9">    
-  
-<div class="col-sm-4">
-      <img  src="public/img/3.jpg" class="img-responsive" target="_blank" alt="Image" >
-        <h4>  
-            <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-        </h4>
-    <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-           жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-   </p>
-</div>
-
-<div class="col-sm-4">
-  <img  src="public/img/3.jpg" class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-    <p> Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-        төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-        жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-    </p>
-</div>
-
-<div class="col-sm-4">
-  <img  src="public/img/3.jpg" class="img-responsive" target="_blank" alt="Image" >
-     <h4>  
-        <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-    </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-           жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-       </p>
-</div>
-
-
-    <div class="col-sm-4">
-        <img  src="public/img/3.jpg" class="img-responsive" target="_blank" alt="Image" >
-          <h4>  
-              <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-          </h4>
-      <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-      төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-      жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-      </p>
-   </div>
-       <div class="col-sm-4">
-        <img  src="public/img/3.jpg" class="img-responsive" target="_blank" alt="Image" >
-          <h4>  
-              <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-          </h4>
-      <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-      төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-      жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-      </p>
-   </div>
-       <div class="col-sm-4">
-        <img  src="public/img/3.jpg" class="img-responsive" target="_blank" alt="Image" >
-          <h4>  
-              <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-          </h4>
-      <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-      төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-      жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-      </p>
-   </div>
-</div>
-</div>
-
-<ul class="pagination2" >
-            <li><a href="#">«</a></li>
-            <li><a href="#">1</a></li>
-            <li><a class="active" href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">»</a></li>
-    </ul>
-</div>
-<?php 
-require("footer.php");
-?>
+		<h2>Submit new comment</h2>
+		<!--comment form -->
+		<form id="form" method="post">
+			<!-- need to supply post id with hidden fild -->
+			<input type="hidden" name="postid" value="<?php echo $row['post_id']?>">
+			<label>
+				<span>Name *</span>
+				<input type="text" name="name" id="comment-name" placeholder="Your name here...." required>
+			</label>
+			<label>
+				<span>Email *</span>
+				<input type="email" name="mail" id="comment-mail" placeholder="Your mail here...." required>
+			</label>
+			<label>
+				<span>Your comment *</span>
+				<textarea name="comment" id="comment" cols="30" rows="10" placeholder="Type your comment here...." required></textarea>
+			</label>
+			<input type="submit" id="submit" value="Submit Comment">
+		</form>
+	</div>
+</body>
+</html>
