@@ -75,3 +75,8 @@ padding-left: 200px;
     max-width: 100%;
     height: 350px;
     }
+.signin-form {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}

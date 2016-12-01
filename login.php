@@ -28,7 +28,7 @@ if (isset($_POST['btn-login'])) {
         header("Location: jor.php");
     } else {
         $msg = "<div class='alert alert-danger'>
-                    <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Invalid Username or Password !
+                    <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Нууц үг, нэр буруу байна. !
                 </div>";
     }
     $conn->close();
@@ -36,9 +36,10 @@ if (isset($_POST['btn-login'])) {
 ?>
 
 <br><br>
+<img  src="public/img/7.jpg" width="1300px" height ="200">
 <div class="signin-form">
 
-    <div class="container">
+    
      
     
        <form class="form-signin" method="post" id="login-form">
@@ -75,7 +76,7 @@ if (isset($_POST['btn-login'])) {
       
       </form>
 
-    </div>
+   
     
 </div>
 

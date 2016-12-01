@@ -28,14 +28,14 @@ if(isset($_POST['btn-signup'])) {
     if ($count==0) {
         
         $query = "INSERT INTO user(username,email,passwords) VALUES('$uname','$email','$hashed_password')";
-        var_dump($query);
+    
         if ($conn->query($query)) {
             $msg = "<div class='alert alert-success'>
-                        <span class='glyphicon glyphicon-info-sign'></span> &nbsp; successfully registered !
+                        <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Амжилттай бүртгэгдлээ!
                     </div>";
         }else {
             $msg = "<div class='alert alert-danger'>
-                        <span class='glyphicon glyphicon-info-sign'></span> &nbsp; error while registering !
+                        <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Бүртгэлд алдаа гарлаа!
                     </div>";
         }
         
@@ -65,8 +65,6 @@ if(isset($_POST['btn-signup'])) {
 <br><br><br>
 <div class="signin-form">
 
-    <div class="container">
-     
         
        <form class="form-signin" method="post" id="register-form">
       
@@ -102,7 +100,7 @@ if(isset($_POST['btn-signup'])) {
       
       </form>
 
-    </div>
+
     
 </div>
 

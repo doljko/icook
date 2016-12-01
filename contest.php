@@ -161,36 +161,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     </div>
   </div>  
 </body>
-  <div class="contact-list">
-          <ul>
-            <?php
-              // Check connection
-              if ($conn->connect_error) {
-                   die(" Холболт буруу байна. " . $conn->connect_error);
-              } 
-
-              $sql = "SELECT id, name, email, content FROM comment";
-                    
-              $result = $conn->query($sql);
-                  
-              if ($result->num_rows > 0) {                   
-                   // output data of each row
-
-                while($row = $result->fetch_assoc()) {
-                      echo '<li>';
-                      echo $row["content"];
-                      echo '</li>';
-                  }
-              } 
-              else
-              {
-                echo '<li>';
-                  echo "0 results";
-                  echo '</li>';
-              }         
-            ?> 
-          </ul>
-        </div>      
+    
     </div>
 </div>
 <ul class="pagination2" >
