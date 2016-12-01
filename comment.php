@@ -55,7 +55,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 					<div class="control-group">
 						<label class="control-label" for="rp_message">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Message:</label>
 					<div class="controls">
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea  placeholder="Message:" name="rp_message" id="rp_message" required="required" rows='10' cols='50'></textarea>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<textarea  placeholder="Message:" name="rp_message" id="rp_message" required="required" rows='5' cols='30'></textarea>
 						</div>
 					</div>
 

@@ -14,10 +14,15 @@
 <nav class="navbar">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#" ><img src="public/img/logo.png"  style="width:150px;height:70px;"></a>
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" ><img src="public/img/logo.png"  style="width:150px;height:70px;"></a>
+    </div>
 
-
-    <div class="collapse navbar-collapse" id="myNavbar">
+    <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
           <li ><a href="index.php">Нүүр</a></li>
           <li><a href="aboutus.php">Бидний тухай</a></li>
@@ -28,5 +33,6 @@
         
       </ul>
     </div>
-  </div>
+
+    </div>
 </nav>
