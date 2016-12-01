@@ -1,5 +1,5 @@
 <?php
-include('configdb.php');
+include('config.php');
 $passkey = $_GET['passkey'];
 $sql = "UPDATE user SET com_code=NULL WHERE com_code='$passkey'";
 $result = mysqli_query($mysqli,$sql) or die(mysqli_error());
