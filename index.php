@@ -1,7 +1,10 @@
 <?php 
+session_start();
+include_once 'config/config.php';
 require("header.php");
-?>
 
+?>
+  <link rel="stylesheet" href="public/css/style.css">
 <div class="container">
   <br>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -39,86 +42,60 @@ require("header.php");
   </div>
 
 					<h3><center>Мэдээ, мэдээлэл</center></h3> <hr>
+          <div class='col-sm-3 bordercat'><h3>Ангилал</h3>
+            <div class="titlelines"></div>
+
+            <?php 
+  
+  $query3 = $conn->query("SELECT * FROM category");
+ 
+    while($row3 = $query3->fetch_assoc()) {
+      $dada = $row3['category_id'];
+       $query2 = $conn->query("SELECT COUNT(category_id) as count  FROM post where category_id=".$dada."");
+       $row2 = $query2->fetch_assoc();
+        echo " <a class='dada' href='angilal.php/dada=$dada'><p> "; 
+                                              echo  $row3['caterory_name']; 
+        echo " <span class='badge'> "; 
+                                             echo  $row2['count']; 
+        echo " </span></p></a>";
+      }
+        ?>
 
 
-<div class="col-sm-12">   
-  <div class="col-sm-3">
-    <img  src="public/img/3.jpg"  height="250" width="250"class="img-responsive" target="_blank" alt="Image" >
+</div>
+          
+          <div class='col-sm-9'> 
+<?php 
+  $query = $conn->query("SELECT post_id, post_title, post_body FROM post");
+    while($row = $query->fetch_assoc()) {
+        echo " 
+  <div class='col-sm-3 postbox'>
+    <img  src='public/img/3.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
       <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
+          <a href='cook/index.php' target='_blank' title='Өглөөний цай''> 
+";
+          echo  $row['post_title'];
+           echo " </a>
       </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
+        <p>       
+      ";
+        echo 
+        $row['post_body'];  
+
+
+        
+         echo " 
         </p>       
  </div>    
- <div class="col-sm-3">
-    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>
-        
-</div> 
- <div class="col-sm-3">
-    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>
-</div> 
-</div>
 
-<div class="col-sm-12">   
-  <div class="col-sm-3">
-    <img  src="public/img/3.jpg"  height="250" width="250"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>       
- </div>    
- <div class="col-sm-3">
-    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>
-        
-</div> 
- <div class="col-sm-3">
-    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>
-</div> 
-<div><h3>Ангилал</h3>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-<p>Зууш</p>
-</div>
+  ";      
+    }
+?>
+    </div>
+
+
+
+
 </div>
 <ul class="pagination2" >
             <li><a href="#">«</a></li>
