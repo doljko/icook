@@ -1,6 +1,6 @@
 <?php 
     require_once("header.php");
-    require_once("config/database.php");
+    require_once("config/config.php");
 
     if(isset($_POST['username'], $_POST['email'], $_POST['comment'] )){
     $username = $_POST['username'];
@@ -53,11 +53,37 @@
         </p>        
 </div>     
 <div>    
-  <p>Хайлт:</p>
-    <form>
-      <input type="text" name="search" placeholder="..">
+ 
+   <form action="" method="POST">
+        <input type="text" name="term" />
+        <input type="submit" value="Хайлт" />
     </form>
-</div>
+
+<?php
+    if (!empty($_REQUEST['term'])) {
+
+      $term = mysqli_real_escape_string( $conn, $_REQUEST['term']); 
+
+      $search = "SELECT * FROM post WHERE post_body LIKE '%".$term."%'"; 
+      
+      $barang2Qry = mysqli_query( $conn, $search) or die ("Warning!".mysql_error());
+      $nemex = 0;
+
+      while ($row = mysqli_fetch_array($barang2Qry)){ 
+
+          echo '<span style="padding: 20px; color:dark;"> Хайлтын илэрц: </span>' .$row['post_body'];
+
+      }  
+
+    }
+?>
+
+
+</div> 
+
+
+
+
 <br>
 
 <?php
@@ -175,6 +201,64 @@ $conn = new mysqli($servername, $username, $password, $dbname);
             <li><a href="#">7</a></li>
             <li><a href="#">»</a></li>
     </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <?php
+$query1=mysql_connect("localhost","root","");
+mysql_select_db("freeze_demo",$query1);
+
+$start=0;
+$limit=10;
+
+if(isset($_GET['id']))
+{
+$id=$_GET['id'];
+$start=($id-1)*$limit;
+}
+
+$query=mysql_query("select * from pagination LIMIT $start, $limit");
+echo "<ul>";
+while($query2=mysql_fetch_array($query))
+{
+echo "<li>".$query2['text1']."</li>";
+}
+echo "</ul>";
+$rows=mysql_num_rows(mysql_query("select * from pagination"));
+$total=ceil($rows/$limit);
+
+if($id>1)
+{
+echo "<a href='?id=".($id-1)."' class='button'>PREVIOUS</a>";
+}
+if($id!=$total)
+{
+echo "<a href='?id=".($id+1)."' class='button'>NEXT</a>";
+}
+
+echo "<ul class='page'>";
+for($i=1;$i<=$total;$i++)
+{
+if($i==$id) { echo "<li class='current'>".$i."</li>"; }
+
+else { echo "<li><a href='?id=".$i."'>".$i."</a></li>"; }
+}
+echo "</ul>";
+?>
 <center>
   <br>
   <p><span class="error"><b>ЭНЭ тагыг авахаар хөлний саарал дээш яваад байгаа юмаа ххэ.</b></span></p>

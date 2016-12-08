@@ -1,6 +1,34 @@
 <?php 
 require("header.php");
-?>  
+require("config/config.php");
+
+        if(isset($_POST['submit']))
+
+        {
+          $lname = ($_POST ['lname']);
+          $email = ($_POST['email']);
+          $address = ($_POST['address']);
+          $phone = ($_POST ['phone']);
+          $topic = ($_POST['topic']);
+          $body = ($_POST['body']);
+
+    
+$insert = 'INSERT INTO userletter (username, useremail, useraddress, letterphone, lettertopic, letterbody) VALUES ('.$lname.', '.$email.', '.$address.','.$phone.','.$topic.','.$body.')';
+
+ 
+				
+						if (mysqli_query($conn, $insert)) 
+					{
+						echo '<span style="padding: 20px; color:green;">Таны хүсэлтийг хүлээн авлаа.</span>';				
+					}
+					else
+					{
+						echo "Error: " . $insert . "<br>" .  mysqli_error($conn);
+					} 
+				mysqli_close($conn);
+      }      
+ ?>
+
 <div class=" text-center">    
     <img  src="public/img/7.jpg" alt="">
 </div>
@@ -10,19 +38,20 @@ require("header.php");
 <br><br>
 
 <div class="row">
-    <form method="post" action="/mn/contact" role="form">
+
+    <form method="POST" >
 <div class="col-sm-4">
 <div class="form-group">
 	<div class="input-group">
 			<div class="input-group-addon"><i class="fa fa-user"></i></div>
-			<input type="text" class="form-control" name="name" value="" placeholder="Овог Нэр *">
+			<input type="text" class="form-control" name="lname" type="text" id="lname" placeholder=" Нэр *">
 	</div>
 </div>
 
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon"><i class="fa fa-envelope"></i></div>
-		<input type="text" class="form-control" name="email" value="" placeholder="И-мэйл *">
+		<input type="text" class="form-control" name="email" id="email"  type="text" placeholder="И-мэйл *">
 </div>
 
 <div class="field-notice" rel="email"></div>
@@ -31,14 +60,14 @@ require("header.php");
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon"><i class="fa fa-home"></i></div>
-		<textarea class="form-control" name="address" placeholder="Хаяг, Шуудангийн дугаар, Хот"></textarea></div>
+		<textarea class="form-control" name="address" type="text"  id="address" placeholder="Хаяг, Шуудангийн дугаар, Хот"></textarea></div>
 	<div class="field-notice" rel="address"></div>
 </div>
 
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon"><i class="fa fa-phone"></i></div>
-		<input type="text" class="form-control" name="phone" value="" placeholder="Утас."></div>
+		<input type="text" class="form-control"  name="phone" id="phone"  placeholder="Утас."></div>
 	<div class="field-notice" rel="phone"></div>
 </div>
 </div>
@@ -48,40 +77,43 @@ require("header.php");
 	<div class="form-group">
 		<div class="input-group">
 			<div class="input-group-addon"><i class="fa fa-question"></i></div>
-			<input type="text" class="form-control" name="subject" value="" placeholder="Сэдэв *"></div>
+			<input type="text" class="form-control"  type="text"div name="topic" id="topic" placeholder="Сэдэв *"></div>
 	<div class="field-notice" rel="subject"></div>
 	</div>
 
 <div class="form-group">
 	<div class="input-group">
 		<div class="input-group-addon"><i class="fa fa-quote-left"></i></div>
-		<textarea class="form-control" name="msg" placeholder="Зурвас *" rows="4"></textarea></div>
+		<textarea class="form-control" name="body"  id="body" type="text" placeholder="Зурвас *" rows="4"></textarea></div>
 	<div class="field-notice" rel="msg"></div>
 </div> 
 
 <div class="form-group form-inline">
-	<div class="input-group mb5">
-		<div class="input-group-addon"><i class="fa fa-lock"></i></div>
-		<input type="text" class="form-control" name="captcha" id="captcha" value="" placeholder="Код хуулах *">
-	</div>
 	
 		<a href="#" onclick="document.getElementById('captcha_image').src = '/includes/securimage/securimage_show.php?sid=' + Math.random(); return false"> <i class="fa fa-refresh"></i></a>
 	<div class="field-notice" rel="captcha"></div>
 </div>   
 
 <div class="form-group row">
-	<span class="col-sm-12"><button type="submit" class="btn btn-primary" name="send"><i class="fa fa-send"></i> Илгээх</button> <i> * Талбаруудыг бөглөнө үү</i></span>
+	
+	<span class="col-sm-12"><button type="submit" name="submit" id="submit" value="Илгээх" ><i class="fa fa-send"></i> Илгээх</button> <i> * Талбаруудыг бөглөнө үү</i></span>
 </div>
 </div>
                 </form>
 </div>
 <div>
 	<h3>Биднийг дага Facegroup oruuulna</h3>
+
+
+
+
 	</div>
 
 	<div>
 		<h3>Холбоо барих utas email oruuulna</h3>
 	</div>
+
+
 
 <center>
 <?php 
