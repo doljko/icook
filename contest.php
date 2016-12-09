@@ -21,43 +21,166 @@
 <img  src="public/img/5.jpg" >
 <hr>
 <div class="col-sm-12">   
-  <div class="col-sm-9">
-    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>       
- </div>    
- <div class="col-sm-9">
-    <img  src="public/img/3.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>
+
+<br>
+    
+    </div>
+  </div>  
+</body>
+    
+    </div>
+</div>
+<?php
+
+$page  = 2;
+$hal    = isset($_GET['hal']) ? $_GET['hal'] : 1;
+$pageSql= "SELECT * FROM post  ORDER BY post_id DESC";
+$pageQry= mysqli_query($conn, $pageSql) or die ("Хайлт буруу байна: ".mysqli_error());
+//$jml    = mysqli_num_rows($pageQry);
+//$mulai  = $baris * ($hal-1);
+
+?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<style type="text/css">
+#content
+{
+  width: 900px;
+  margin: 0 auto;
+  font-family:Arial, Helvetica, sans-serif;
+}
+.page
+{
+float: right;
+margin: 0;
+padding: 0;
+}
+.page li
+{
+  list-style: none;
+  display:inline-block;
+}
+.page li a, .current
+{
+display: block;
+padding: 5px;
+text-decoration: none;
+color: #8A8A8A;
+}
+.current
+{
+  font-weight:bold;
+  color: #000;
+}
+.button
+{
+padding: 5px 15px;
+text-decoration: none;
+background: #333;
+color: #F3F3F3;
+font-size: 13PX;
+border-radius: 2PX;
+margin: 0 4PX;
+display: block;
+float: left;
+}
+</style>
+<body>
+<div id="content">
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cook";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+ mysqli_set_charset( $conn, 'utf8');
+ ?>
+ <?php
+$start=0;
+$limit=3;
+$id=0;
+if(isset($_GET['id']))
+{
+$id=$_GET['id'];
+$start=($id-1)*$limit;
+}
+
+$query=mysqli_query($conn, "select * from post LIMIT $start, $limit");
+echo "<ul>";
+while($query2=mysqli_fetch_array($query))
+{
+echo "<li>".$query2['post_body']."</li>";
+}
+echo "</ul>";
+$rows=mysqli_num_rows(mysqli_query($conn, "select * from post"));
+$total=ceil($rows/$limit);
+
+if($id>1)
+{
+echo "<a href='?id=".($id-1)."' class='button'>Өмнөх</a>";
+}
+if($id!=$total)
+{
+echo "<a href='?id=".($id+1)."' class='button'>Дараах</a>";
+}
+
+echo "<ul class='page'>";
+for($i=1;$i<=$total;$i++)
+{
+if($i==$id) { echo "<li class='current'>".$i."</li>"; }
+
+else { echo "<li><a href='?id=".$i."'>".$i."</a></li>"; }
+}
+echo "</ul>";
+?>
+</div>
+
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cook";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+ mysqli_set_charset( $conn, 'utf8');
+?>
+
+    <div id="contact_form" class="rapid_contact"> 
+
+        <!-- nerni section end bolv -->
         
-</div> 
-<div class="col-sm-9">
-    <img  src="public/img/1.jpg"  height="150" width="200"class="img-responsive" target="_blank" alt="Image" >
-      <h4>  
-          <a href="cook/index.php" target="_blank" title="Өглөөний цай">Өглөөний цай </a>
-      </h4>
-        <p>       Айл бүрт шарах шүүгээ байх албагүй. Харин айл бүрт будаа агшаагч байгаа гэж бодож байна. Будаа агшаагчинд ганцхан будаа агшаахаас гадна маш олон 
-            төрлийн амтат хоол, зоог хийж болдог. Будаа агшаагчинд хоол хийснээр шарж, хуураагүй,
-            жигнэж болгосон хоол болох болно. Энэ нь ходоод дотор муутай хүнд нэн ач тустай шүү.
-        </p>        
-</div>     
-<div>    
+        <?php
+        if(!empty($_POST['submit']))
+        {
+          $name = trim($_POST ['rp_name']);
+          $email = trim($_POST['rp_email']);
+          $content = trim($_POST['rp_message']);
+
+          $insert = "INSERT INTO `comment` (`name`, `email`, `content`) VALUES ('".$name."', '".$email."', '".$content."');";
+          if($conn->query($insert))
+          {
+            echo '<span style="padding: 20px; color:green;">Таны хүсэлтийг хүлээн авлаа.</span>';       
+          }
+          else
+          {
+            echo '<span style="padding: 20px; color:red;">Таны оролдлого амжилтгүй боллоо. Дахин оролдлого хийнэ үү!</span>';
+          }
+        }
+          
+      
+        ?>
+        <div>    
  
-   <form action="" method="POST">
-        <input type="text" name="term" />
-        <input type="submit" value="Хайлт" />
-    </form>
+ 
 
 <?php
     if (!empty($_REQUEST['term'])) {
@@ -80,49 +203,8 @@
 
 
 </div> 
-
-
-
-
 <br>
-
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cook";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-?>
-
-
-    <div id="contact_form" class="rapid_contact"> 
-
-        <!-- nerni section end bolv -->
-        
-        <?php
-        if(!empty($_POST['submit']))
-        {
-          $name = trim($_POST ['rp_name']);
-          $email = trim($_POST['rp_email']);
-          $content = trim($_POST['rp_message']);
-
-          $insert = "INSERT INTO `comment` (`name`, `email`, `content`) VALUES ('".$name."', '".$email."', '".$content."');";
-          if($conn->query($insert))
-          {
-            echo '<span style="padding: 20px; color:green;">Таны хүсэлтийг хүлээн авлаа.</span>';       
-          }
-          else
-          {
-            echo '<span style="padding: 20px; color:red;">Таны оролдлого амжилтгүй боллоо. Дахин оролдлого хийнэ үү!</span>';
-          }
-          
-
-        }
-          
-      
-        ?>
-
+<br><br>
         <form action="" method="POST" class="">
           <div class="control-group">
             <label class="control-label" > <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Таны нэр:</b></label>
@@ -153,6 +235,12 @@ $conn = new mysqli($servername, $username, $password, $dbname);
           </div>
           <!-- end control group -->
         </form> 
+          <form action="" method="POST">
+        <input type="text" name="term" />
+        <input type="submit" value="Хайлт" />
+    </form>
+
+
 
         <div class="contact-list">
           <ul>
@@ -183,24 +271,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
               }         
             ?> 
           </ul>
-        </div>      
-    </div>
-  </div>  
+        </div>  
 </body>
-    
-    </div>
-</div>
-<ul class="pagination2" >
-            <li><a href="#">«</a></li>
-            <li><a href="#">1</a></li>
-            <li><a class="active" href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">6</a></li>
-            <li><a href="#">7</a></li>
-            <li><a href="#">»</a></li>
-    </ul>
+</html>
 <center>
   <br>
   <p><span class="error"><b>ЭНЭ тагыг авахаар хөлний саарал дээш яваад байгаа юмаа ххэ.</b></span></p>

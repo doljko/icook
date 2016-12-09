@@ -64,34 +64,27 @@ require("header.php");
           
           <div class='col-sm-9'> 
                 <?php 
-                $start=0;
-$limit=9;
-$id=0;
-if(isset($_GET['id']))
-{
-$id=$_GET['id'];
-$start=($id-1)*$limit;
-}
-                $query = $conn->query( " SELECT post_id, post_title, post_body FROM post LIMIT $start, $limit");
-                //  $query = $conn->query("SELECT post_id, post_title, post_body FROM post");
-                     while($row = $query->fetch_assoc()) {
-                      echo " 
-                <div class='col-sm-4 postbox'>
-                    <img  src='public/img/3.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
-                   <h4>  
-                        <a href='cook/index.php' target='_blank' title='Өглөөний цай''> 
-                 ";
-                          echo  $row['post_title'];
-                          echo " </a>
-                      </h4>
-                    ";
-                        echo $row['post_body'];  
-                     echo " 
-                         </p>       
-                  </div>    
+                //   $query = $conn->query("SELECT post_id, post_title, post_body FROM post");
+                //     while($row = $query->fetch_assoc()) {
+                //         echo " 
+                //   <div class='col-sm-3 postbox'>
+                //     <img  src='public/img/3.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
+                //       <h4>  
+                //           <a href='cook/index.php' target='_blank' title='Өглөөний цай''> 
+                // ";
+                //           echo  $row['post_title'];
+                //            echo " </a>
+                //       </h4>
+                //         <p>       
+                //       ";
+                //         echo 
+                //         $row['post_body'];  
+                //          echo " 
+                //         </p>       
+                //  </div>    
 
-                 ";      
-                    }
+                //   ";      
+                //     }
 
 $servername = "localhost";
 $username = "root";
@@ -105,11 +98,18 @@ if ($conn->connect_error) {
 }
  mysqli_set_charset( $conn, 'utf8');
  
+$start=0;
+$limit=3;
+$id=0;
+if(isset($_GET['id']))
+{
+$id=$_GET['id'];
+$start=($id-1)*$limit;
+}
 
-
-// $query=mysqli_query($conn, " SELECT post_id, post_title, post_body FROM post LIMIT $start, $limit");
-// while($row = $query->fetch_assoc()) {
-     //<div class='col-sm-3 postbox'>
+$query=mysqli_query($conn, " SELECT post_id, post_title, post_body FROM post LIMIT $start, $limit");
+while($row = $query->fetch_assoc()) {
+     <div class='col-sm-3 postbox'>
                 //     <img  src='public/img/3.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
                 //       <h4>  
                 //           <a href='cook/index.php' target='_blank' title='Өглөөний цай''> 
@@ -125,24 +125,24 @@ if ($conn->connect_error) {
                 //         </p>       
                 //  </div>   
 
-// echo "<ul>";.echo "<div class='col-sm-3 postbox'>
-//                     <img  src='public/img/2.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
-//                       <h4>  
-//                           <a href='cook/index.php' target='_blank' title='Өглөөний цай''> ";
-//  echo  $row['post_title'];
-//                            echo " </a>
-//                     </h4>
-//                             ";
-//                    echo 
-//                         $row['post_body'];  
+echo "<ul>";.echo "<div class='col-sm-3 postbox'>
+                    <img  src='public/img/2.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
+                      <h4>  
+                          <a href='cook/index.php' target='_blank' title='Өглөөний цай''> ";
+ echo  $row['post_title'];
+                           echo " </a>
+                    </h4>
+                            ";
+                   echo 
+                        $row['post_body'];  
                       
-//                   echo $
+                  echo $
 
 
-// echo " </ul>"; 
+echo " </ul>"; 
 
 
-//}
+}
 
 while($query2=mysqli_fetch_array($query))
 {

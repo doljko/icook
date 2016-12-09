@@ -1,95 +1,44 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-
-<style type="text/css">
-#content
-{
-	width: 900px;
-	margin: 0 auto;
-	font-family:Arial, Helvetica, sans-serif;
-}
-.page
-{
-float: right;
-margin: 0;
-padding: 0;
-}
-.page li
-{
-	list-style: none;
-	display:inline-block;
-}
-.page li a, .current
-{
-display: block;
-padding: 5px;
-text-decoration: none;
-color: #8A8A8A;
-}
-.current
-{
-	font-weight:bold;
-	color: #000;
-}
-.button
-{
-padding: 5px 15px;
-text-decoration: none;
-background: #333;
-color: #F3F3F3;
-font-size: 13PX;
-border-radius: 2PX;
-margin: 0 4PX;
-display: block;
-float: left;
-}
-</style>
-
-
-</head>
+<html>
+<title>pagnition</title>
 <body>
-<div id="content">
-<?php
-    require_once("config/config.php");
-$start=0;
-$limit=10;
 
-if(isset($_GET['id']))
-{
-	$id=$_GET['id'];
-	$start=($id-1)*$limit;
-}
+<?php 
 
-$query=mysqli_query($conn, "select * from pagination LIMIT $start, $limit");
-echo "<ul>";
-while($query2=mysqli_fetch_array($query))
-{
-	echo "<li>".$query2['text1']."</li>";
-}
-echo "</ul>";
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cook";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+ mysqli_set_charset( $conn, 'utf8');
+
+$page = (int) (!isset ($_GET["page"]) ? 1 : $_GET["page"]);
+$limit = 5;
+$startpoint = ($page * $limit) - $limit;
+
+$statement = "pagination order by name asc";
 
 
-$rows=mysqli_num_rows(mysqli_query($conn,"select * from pagination"));
-$total=ceil($rows/$limit);
 
-if($id>1)
-{
-	echo "<a href='?id=".($id-1)."' class='button'>PREVIOUS</a>";
-}
-if($id!=$total)
-{
-	echo "<a href='?id=".($id+1)."' class='button'>NEXT</a>";
-}
 
-echo "<ul class='page'>";
-		for($i=1;$i<=$total;$i++)
-		{
-			if($i==$id) { echo "<li class='current'>".$i."</li>"; }
-			
-			else { echo "<li><a href='?id=".$i."'>".$i."</a></li>"; }
-		}
-echo "</ul>";
-?>
-</div>
-</body>
-</html>
+ $res = "SELECT * FROM ($statement) LIMIT ($startpoint), ($limit)"; 
+
+    //  $search = "SELECT * FROM pagination"; 
+    //  $res = mysqli_query( $conn, $search) or die ("Өгөгдөл буруу байна!".mysqli_error());
+  
+
+   while ($row = mysqli_fetch_assoc($res)) 
+   {
+ 
+		 echo ( $row["text1"]);
+		 echo"<br>";
+		 //echo "fdsafs";
+   }
+ 
+
+ ?>
+
+
+ </body>
+ </html>
