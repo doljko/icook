@@ -53,7 +53,7 @@ require("header.php");
                 $dada = $row3['category_id'];
                  $query2 = $conn->query("SELECT COUNT(category_id) as count  FROM post where category_id=".$dada."");
                  $row2 = $query2->fetch_assoc();
-                  echo " <a class='dada' href='angilal.php/dada=$dada'><p> "; 
+                  echo " <a  href='category.php?category1=".$row2['count']."'><p> "; 
                                                         echo  $row3['caterory_name']; 
                   echo " <span class='badge'> "; 
                                                        echo  $row2['count']; 
@@ -72,26 +72,26 @@ if(isset($_GET['id']))
 $id=$_GET['id'];
 $start=($id-1)*$limit;
 }
-                $query = $conn->query( " SELECT post_id, post_title, post_body FROM post LIMIT $start, $limit");
-                //  $query = $conn->query("SELECT post_id, post_title, post_body FROM post");
-                     while($row = $query->fetch_assoc()) {
-                      echo " 
-                <div class='col-sm-4 postbox'>
-                    <img  src='public/img/3.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
-                   <h4>  
-                        <a href='cook/index.php' target='_blank' title='Өглөөний цай''> 
-                 ";
-                          echo  $row['post_title'];
-                          echo " </a>
-                      </h4>
-                    ";
-                        echo $row['post_body'];  
-                     echo " 
-                         </p>       
-                  </div>    
+$query = $conn->query( " SELECT post_id, post_title, post_body, image FROM post LIMIT $start, $limit");
+//  $query = $conn->query("SELECT post_id, post_title, post_body FROM post");
+     while($row = $query->fetch_assoc()) {
+      echo " 
+<div class='col-sm-4 postbox'>
+    <img  src='".$row['image']."'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
+   <h4>  
+        <a href='redirect.php?jor=".$row['post_id']."' target='_blank' title='Өглөөний цай''> 
+ ";
+          echo  $row['post_title'];
+          echo " </a> 
+      </h4>
+    ";
+        echo $row['post_body'];  
+     echo " 
+         </p>       
+  </div>    
 
-                 ";      
-                    }
+ ";      
+    }
 
 $servername = "localhost";
 $username = "root";

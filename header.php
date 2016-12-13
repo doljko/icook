@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <?php 
 header('Content-Type: text/html; charset=utf-8');
+
 ?>
 <html lang="en">
   <head>
+    
     <title>Bootstrap Example</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
