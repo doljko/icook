@@ -8,33 +8,33 @@ session_start();
 
 require("config.php");
 
-    $error = false;
+$error = false;
 //check if form is submitted
 if (isset($_POST['signup'])) {
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $name      = mysqli_real_escape_string($conn, $_POST['name']);
+    $email     = mysqli_real_escape_string($conn, $_POST['email']);
+    $password  = mysqli_real_escape_string($conn, $_POST['password']);
     $cpassword = mysqli_real_escape_string($conn, $_POST['cpassword']);
-
+    
     //name can contain only alpha characters and space
-    if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
-        $error = true;
+    if (!preg_match("/^[a-zA-Z ]+$/", $name)) {
+        $error      = true;
         $name_error = "Нэрний үсэгнүүд цагаан толгой үсгээс бүрдэнэ.";
     }
-    if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
-        $error = true;
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error       = true;
         $email_error = "Бүртгэлтэй И-мэйл хаягаар нэвтэрнэ үү.";
     }
-    if(strlen($password) < 6) {
-        $error = true;
+    if (strlen($password) < 6) {
+        $error          = true;
         $password_error = "Нууц үг 6 үсэгээс бүрдэнэ.";
     }
-    if($password != $cpassword) {
-        $error = true;
+    if ($password != $cpassword) {
+        $error           = true;
         $cpassword_error = "Нууц үг буруу байна.";
     }
     if (!$error) {
-        if(mysqli_query($conn, "INSERT INTO user(username,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
+        if (mysqli_query($conn, "INSERT INTO user(username,email,password) VALUES('" . $name . "', '" . $email . "', '" . md5($password) . "')")) {
             $successmsg = "Амжилттай нэвтэрлээ! <a href='login.php'>Нэвтрэх</a>";
         } else {
             $errormsg = "Алдаатай байна.!";
@@ -82,26 +82,44 @@ if (isset($_POST['signup'])) {
 
                     <div class="form-group">
                         <label for="name">Нэр</label>
-                        <input type="text" name="name" placeholder="Нэр" required value="<?php if($error) echo $name; ?>" class="form-control" />
-                        <span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
+                        <input type="text" name="name" placeholder="Нэр" required value="<?php
+if ($error)
+    echo $name;
+?>" class="form-control" />
+                        <span class="text-danger"><?php
+if (isset($name_error))
+    echo $name_error;
+?></span>
                     </div>
                     
                     <div class="form-group">
                         <label for="name">И-мэйл</label>
-                        <input type="text" name="email"  placeholder="И-мэйл" required value="<?php if($error) echo $email; ?>" class="form-control" />
-                        <span class="text-danger"><?php if (isset($email_error)) echo $email_error; ?></span>
+                        <input type="text" name="email"  placeholder="И-мэйл" required value="<?php
+if ($error)
+    echo $email;
+?>" class="form-control" />
+                        <span class="text-danger"><?php
+if (isset($email_error))
+    echo $email_error;
+?></span>
                     </div>
 
                     <div class="form-group">
                         <label for="name">Нууц үг</label>
                         <input type="password" name="password" placeholder="Нууц үг" required class="form-control" />
-                        <span class="text-danger"><?php if (isset($password_error)) echo $password_error; ?></span>
+                        <span class="text-danger"><?php
+if (isset($password_error))
+    echo $password_error;
+?></span>
                     </div>
 
                     <div class="form-group">
                         <label for="name">Нууц үг дахин баталгаажуулах</label>
                         <input type="password" name="cpassword" placeholder="Нууц үг баталгаажуулалт" required class="form-control" />
-                        <span class="text-danger"><?php if (isset($cpassword_error)) echo $cpassword_error; ?></span>
+                        <span class="text-danger"><?php
+if (isset($cpassword_error))
+    echo $cpassword_error;
+?></span>
                     </div>
 
                     <div class="form-group">
@@ -109,8 +127,16 @@ if (isset($_POST['signup'])) {
                     </div>
                 </fieldset>
             </form>
-            <span class="text-success"><?php if (isset($successmsg)) { echo $successmsg; } ?></span>
-            <span class="text-danger"><?php if (isset($errormsg)) { echo $errormsg; } ?></span>
+            <span class="text-success"><?php
+if (isset($successmsg)) {
+    echo $successmsg;
+}
+?></span>
+            <span class="text-danger"><?php
+if (isset($errormsg)) {
+    echo $errormsg;
+}
+?></span>
         </div>
     </div>
    

@@ -1,4 +1,4 @@
-<?php 
+<?php
 require("header.php");
 ?>
 
@@ -60,7 +60,7 @@ Tara Code hotel
 
 
 <center>
-<?php 
+<?php
 require("footer.php");
 ?>
 </center>

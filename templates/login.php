@@ -1,29 +1,29 @@
-<?php 
+<?php
 require("header.php");
 ?>
 <?php
 
 require_once 'config/config.php';
 
-if (isset($_SESSION['userSession'])!="") {
+if (isset($_SESSION['userSession']) != "") {
     header("Location: jor.php");
     exit;
 }
 
 if (isset($_POST['btn-login'])) {
     
-    $email = strip_tags($_POST['email']);
+    $email    = strip_tags($_POST['email']);
     $password = strip_tags($_POST['password']);
     
-    $email = $conn->real_escape_string($email);
+    $email    = $conn->real_escape_string($email);
     $password = $conn->real_escape_string($password);
     
     $query = $conn->query("SELECT user_id, email, passwords FROM user WHERE email='$email'");
-    $row=$query->fetch_array();
+    $row   = $query->fetch_array();
     
     $count = $query->num_rows; // if email/password are correct returns must be 1 row
     
-    if (password_verify($password, $row['passwords']) && $count==1) {
+    if (password_verify($password, $row['passwords']) && $count == 1) {
         $_SESSION['userSession'] = $row['user_id'];
         header("Location: index.php");
     } else {
@@ -44,10 +44,10 @@ if (isset($_POST['btn-login'])) {
         <h4 class="form-signin-heading">Нэвтрэх хэсэг</h4><hr />
         
         <?php
-        if(isset($msg)){
-            echo $msg;
-        }
-        ?>
+if (isset($msg)) {
+    echo $msg;
+}
+?>
         
         <div class="form-group">
         <input type="email" class="form-control" placeholder="И-мэйл" name="email"  />
@@ -81,6 +81,6 @@ if (isset($_POST['btn-login'])) {
 
 </body>
 </html>
-<?php 
+<?php
 require("footer.php");
 ?>

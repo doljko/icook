@@ -1,7 +1,6 @@
 <?php 
-require("header.php");
+require("templates/header.php");
 ?>
-  <link rel="stylesheet" href="public/css/style.css">
 <div class="container">
   <br>
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -252,6 +251,6 @@ float: left;
 </div>
 <center>
 <?php 
-require("footer.php");
+require("templates/footer.php");
 ?>
 </center>

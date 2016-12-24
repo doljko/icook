@@ -1,33 +1,25 @@
-<?php 
+<?php
 require("header.php");
 require("config/config.php");
 
-        if(isset($_POST['submit']))
-
-        {
-          $lname = ($_POST ['lname']);
-          $email = ($_POST['email']);
-          $address = ($_POST['address']);
-          $phone = ($_POST ['phone']);
-          $topic = ($_POST['topic']);
-          $body = ($_POST['body']);
-
-    
-$insert = 'INSERT INTO userletter (username, useremail, useraddress, letterphone, lettertopic, letterbody) VALUES ('.$lname.', '.$email.', '.$address.','.$phone.','.$topic.','.$body.')';
-
+if (isset($_POST['submit'])) {
+    $lname   = ($_POST['lname']);
+    $email   = ($_POST['email']);
+    $address = ($_POST['address']);
+    $phone   = ($_POST['phone']);
+    $topic   = ($_POST['topic']);
+    $body    = ($_POST['body']);
+   
+    $insert = 'INSERT INTO userletter (username, useremail, useraddress, letterphone, lettertopic, letterbody) VALUES (' . $lname . ', ' . $email . ', ' . $address . ',' . $phone . ',' . $topic . ',' . $body . ')';
  
-				
-						if (mysqli_query($conn, $insert)) 
-					{
-						echo '<span style="padding: 20px; color:green;">Таны хүсэлтийг хүлээн авлаа.</span>';				
-					}
-					else
-					{
-						echo "Error: " . $insert . "<br>" .  mysqli_error($conn);
-					} 
-				mysqli_close($conn);
-      }      
- ?>
+    if (mysqli_query($conn, $insert)) {
+        echo '<span style="padding: 20px; color:green;">Таны хүсэлтийг хүлээн авлаа.</span>';
+    } else {
+        echo "Error: " . $insert . "<br>" . mysqli_error($conn);
+    }
+    mysqli_close($conn);
+}
+?>
 
 <div class=" text-center">    
     <img  src="public/img/7.jpg" alt="">
@@ -72,7 +64,6 @@ $insert = 'INSERT INTO userletter (username, useremail, useraddress, letterphone
 </div>
 </div>
 
-
 <div class="col-sm-5">
 	<div class="form-group">
 		<div class="input-group">
@@ -101,22 +92,15 @@ $insert = 'INSERT INTO userletter (username, useremail, useraddress, letterphone
 </div>
                 </form>
 </div>
-<div>
+	<div>
 	<h3>Биднийг дага Facegroup oruuulna</h3>
-
-
-
-
 	</div>
 
 	<div>
 		<h3>Холбоо барих utas email oruuulna</h3>
 	</div>
-
-
-
 <center>
-<?php 
+<?php
 require("footer.php");
 ?>
 </center>
