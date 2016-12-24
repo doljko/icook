@@ -1,8 +1,5 @@
 <?php 
-session_start();
-include_once 'config/config.php';
 require("header.php");
-
 ?>
   <link rel="stylesheet" href="public/css/style.css">
 <div class="container">
@@ -47,24 +44,48 @@ require("header.php");
       <div class="titlelines"></div>
 
           <?php 
+          
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cook";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+ mysqli_set_charset( $conn, 'utf8');
+
             $query3 = $conn->query("SELECT * FROM category");
            
               while($row3 = $query3->fetch_assoc()) {
                 $dada = $row3['category_id'];
                  $query2 = $conn->query("SELECT COUNT(category_id) as count  FROM post where category_id=".$dada."");
                  $row2 = $query2->fetch_assoc();
-                  echo " <a  href='category.php?category1=".$row2['count']."'><p> "; 
+                  echo " <a  href='category.php?category1=".$row3['category_id']."'><p> "; 
                                                         echo  $row3['caterory_name']; 
                   echo " <span class='badge'> "; 
                                                        echo  $row2['count']; 
                   echo " </span></p></a>";
                 }
+
           ?>
 </div>
-          
-          <div class='col-sm-9'> 
-                <?php 
-                $start=0;
+
+<style class="img">
+img:hover {
+    opacity: 0.5;
+    filter: alpha(opacity=30); /* For IE8 and earlier */
+    webkit-transform:scale(1.2);
+    transform:scale(1.2);
+    -webkit-transition: all 0.7s ease;
+}
+</style>
+
+<div class='col-sm-9'> 
+<?php 
+$start=0;
 $limit=9;
 $id=0;
 if(isset($_GET['id']))
@@ -77,7 +98,7 @@ $query = $conn->query( " SELECT post_id, post_title, post_body, image FROM post 
      while($row = $query->fetch_assoc()) {
       echo " 
 <div class='col-sm-4 postbox'>
-    <img  src='".$row['image']."'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
+    <img  src='".$row['image']."'class='list-image' target='_blank' alt='Image' >
    <h4>  
         <a href='redirect.php?jor=".$row['post_id']."' target='_blank' title='Өглөөний цай''> 
  ";
@@ -85,7 +106,7 @@ $query = $conn->query( " SELECT post_id, post_title, post_body, image FROM post 
           echo " </a> 
       </h4>
     ";
-        echo $row['post_body'];  
+        echo "<p>".$row['post_body']."</p>";  
      echo " 
          </p>       
   </div>    
@@ -143,7 +164,8 @@ if ($conn->connect_error) {
 
 
 //}
-
+//
+ echo "<div class='row'>";
 while($query2=mysqli_fetch_array($query))
 {
 echo "<li>".$query2['post_body']."</li>";
@@ -169,6 +191,9 @@ if($i==$id) { echo "<li class='current'>".$i."</li>"; }
 else { echo "<li><a href='?id=".$i."'>".$i."</a></li>"; }
 }
 echo "</ul>";
+
+echo '</div>';
+//
                 ?>
     </div>
 

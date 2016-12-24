@@ -4,9 +4,9 @@ require("header.php");
 
 
 <?php
-session_start();
+//session_start();
 if (isset($_SESSION['userSession'])!="") {
-    header("Location: jor.php");
+    header("Location: header.php");
 }
 require_once 'config/config.php';
 

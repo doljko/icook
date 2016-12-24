@@ -2,7 +2,7 @@
 require("header.php");
 ?>
 <?php
-session_start();
+
 require_once 'config/config.php';
 
 if (isset($_SESSION['userSession'])!="") {
@@ -25,7 +25,7 @@ if (isset($_POST['btn-login'])) {
     
     if (password_verify($password, $row['passwords']) && $count==1) {
         $_SESSION['userSession'] = $row['user_id'];
-        header("Location: jor.php");
+        header("Location: index.php");
     } else {
         $msg = "<div class='alert alert-danger'>
                     <span class='glyphicon glyphicon-info-sign'></span> &nbsp; Нууц үг, нэр буруу байна. !
@@ -39,9 +39,6 @@ if (isset($_POST['btn-login'])) {
 <img  src="public/img/7.jpg" width="1300px" height ="200">
 <div class="signin-form">
 
-    
-     
-    
        <form class="form-signin" method="post" id="login-form">
       
         <h4 class="form-signin-heading">Нэвтрэх хэсэг</h4><hr />
@@ -71,14 +68,16 @@ if (isset($_POST['btn-login'])) {
             <a href="burtgel.php" class="btn btn-default" style="float:right;">Бүртгүүлэх</a>
             
         </div>  
-        
-        
-      
+
       </form>
 
-   
-    
 </div>
+// <script>
+// $('#btn-login').click(function(){
+// alert("Нууц нэр,үг буруу байна.");
+// })
+// </script>
+
 
 </body>
 </html>

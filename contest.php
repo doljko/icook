@@ -1,47 +1,178 @@
 <?php 
     require_once("header.php");
     require_once("config/config.php");
-
-    if(isset($_POST['username'], $_POST['email'], $_POST['comment'] )){
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $comment = $_POST['comment'];
-     if(empty($username) or empty ($email)) {
-      $error = 'All fields are required';
-    } else {
-      global $pdo;
-      $query = $pdo->prepare('INSERT INTO comment (username, email, comment) VALUES (?,?,?)');
-      $query->bindValue(1, $username, PDO::PARAM_STR);
-      $query->bindValue(2, $email, PDO::PARAM_STR);
-      $query->bindValue(3, $comment, PDO::PARAM_STR);
-      $query->execute();
-    }
-  }
 ?>
-<img  src="public/img/5.jpg" >
+<img  src="public/img/5.jpg"  height='300' width='1400'>
 <hr>
 <div class="col-sm-12">   
 
 <br>
-    
-    </div>
-  </div>  
-</body>
-    
-    </div>
-</div>
+ <?php 
+$start=0;
+$limit=3;
+$id=0;
+if(isset($_GET['id']))
+{
+$id=$_GET['id'];
+$start=($id-1)*$limit;
+}
+$query = $conn->query( " SELECT contest_id, contest_name, contest_body, contest_image FROM contest LIMIT $start, $limit");
+//  $query = $conn->query("SELECT post_id, post_title, post_body FROM post");
+     while($row = $query->fetch_assoc()); {
+      echo " 
+<div class='col-sm-4 postbox'>
+    <img  src='".$row['image']."'class='list-image' target='_blank' alt='Image' >
+   <h4>  
+        <a href='redirect.php?jor=".$row['contest_id']."' target='_blank' '> 
+ ";
+          echo  $row['contest_name'];
+          echo " </a> 
+      </h4>
+    ";
+        echo "<p>".$row['contest_body']."</p>";  
+     echo " 
+         </p>       
+  </div>    
+
+ ";      
+    }
+
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cook";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+ mysqli_set_charset( $conn, 'utf8');
+ 
+
+
+// $query=mysqli_query($conn, " SELECT post_id, post_title, post_body FROM post LIMIT $start, $limit");
+// while($row = $query->fetch_assoc()) {
+     //<div class='col-sm-3 postbox'>
+                //     <img  src='public/img/3.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
+                //       <h4>  
+                //           <a href='cook/index.php' target='_blank' title='Өглөөний цай''> 
+                // ";
+                //           echo  $row['post_title'];
+                //            echo " </a>
+                //       </h4>
+                //         <p>       
+                //       ";
+                //         echo 
+                //         $row['post_body'];  
+                //          echo " 
+                //         </p>       
+                //  </div>   
+
+// echo "<ul>";.echo "<div class='col-sm-3 postbox'>
+//                     <img  src='public/img/2.jpg'  height='250' width='250'class='img-responsive' target='_blank' alt='Image' >
+//                       <h4>  
+//                           <a href='cook/index.php' target='_blank' title='Өглөөний цай''> ";
+//  echo  $row['post_title'];
+//                            echo " </a>
+//                     </h4>
+//                             ";
+//                    echo 
+//                         $row['post_body'];  
+                      
+//                   echo $
+
+
+// echo " </ul>"; 
+
+
+//}
+//
+ echo "<div class='row'>";
+while($query2=mysqli_fetch_array($query))
+{
+echo "<li>".$query2['contest_body']."</li>";
+}
+echo "</ul>";
+$rows=mysqli_num_rows(mysqli_query($conn, "select * from contest"));
+$total=ceil($rows/$limit);
+
+if($id>1)
+{
+echo "<a href='?id=".($id-1)."' class='button'>Өмнөх</a>";
+}
+if($id!=$total)
+{
+echo "<a href='?id=".($id+1)."' class='button'>Дараах</a>";
+}
+
+echo "<ul class='page'>";
+for($i=1;$i<=$total;$i++)
+{
+if($i==$id) { echo "<li class='current'>".$i."</li>"; }
+
+else { echo "<li><a href='?id=".$i."'>".$i."</a></li>"; }
+}
+echo "</ul>";
+
+echo '</div>';
+//
+                ?>
+
+ <div class="fb-page fb_iframe_widget" data-href="https://www.facebook.com/"
+  data-small-header="false" data-adapt-container-width="true" data-hide-cover="false"
+   data-show-facepile="true" data-show-posts="false" fb-xfbml-state="rendered" 
+   fb-iframe-plugin-query="adapt_container_width=true&amp;app_id=392649047557501&amp;container_width=0&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2F1000jor.mn&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;show_posts=false&amp;small_header=false">
+   <span style="vertical-align: bottom; width: 340px; height: 214px;"><iframe name="fba605029ffb4" width="1000px" height="1000px" frameborder="0" allowtransparency="true" allowfullscreen="true" scrolling="no" title="fb:page Facebook Social Plugin" src="https://www.facebook.com/v2.1/plugins/page.php?adapt_container_width=true&amp;app_id=392649047557501&amp;channel=http%3A%2F%2Fstaticxx.facebook.com%2Fconnect%2Fxd_arbiter%2Fr%2FiPrOY23SGAp.js%3Fversion%3D42%23cb%3Df1cbfbde8955164%26domain%3Dwww.1000jor.mn%26origin%3Dhttp%253A%252F%252Fwww.1000jor.mn%252Ff376716a6d6e96c%26relation%3Dparent.parent&amp;container_width=0&amp;hide_cover=false&amp;href=https%3A%2F%2Fwww.facebook.com%2F1000jor.mn&amp;locale=en_US&amp;sdk=joey&amp;show_facepile=true&amp;show_posts=false&amp;small_header=false" style="border: none; visibility: visible; width: 340px; height: 214px;" class=""></iframe></span></div>
+
 <?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cook";
 
-$page  = 2;
-$hal    = isset($_GET['hal']) ? $_GET['hal'] : 1;
-$pageSql= "SELECT * FROM post  ORDER BY post_id DESC";
-$pageQry= mysqli_query($conn, $pageSql) or die ("Хайлт буруу байна: ".mysqli_error());
-//$jml    = mysqli_num_rows($pageQry);
-//$mulai  = $baris * ($hal-1);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+ mysqli_set_charset( $conn, 'utf8');
 
-?>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+ echo "<div class='col-sm-12'>";
+
+while($query2=mysqli_fetch_array($query))
+{
+echo "<li>".$query2['news_body']."</li>";
+}
+echo "</ul>";
+$rows=mysqli_num_rows(mysqli_query($conn, "select * from news"));
+$total=ceil($rows/$limit);
+
+if($id>1)
+{
+echo "<a href='?id=".($id-1)."' class='button'>Өмнөх</a>";
+}
+if($id!=$total)
+{
+echo "<a href='?id=".($id+1)."' class='button'>Дараах</a>";
+}
+
+echo "<ul class='page'>";
+for($i=1;$i<=$total;$i++)
+{
+if($i==$id) { echo "<li class='current'>".$i."</li>"; }
+
+else { echo "<li><a href='?id=".$i."'>".$i."</a></li>"; }
+}
+echo "</ul>";
+echo '</div>';
+                ?>
+    </div>
+
+
+
+
+</div>
 
 <style type="text/css">
 #content
@@ -86,60 +217,11 @@ display: block;
 float: left;
 }
 </style>
-<body>
-<div id="content">
-<?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "cook";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
- mysqli_set_charset( $conn, 'utf8');
- ?>
- <?php
-$start=0;
-$limit=3;
-$id=0;
-if(isset($_GET['id']))
-{
-$id=$_GET['id'];
-$start=($id-1)*$limit;
-}
 
-$query=mysqli_query($conn, "select * from post LIMIT $start, $limit");
-echo "<ul>";
-while($query2=mysqli_fetch_array($query))
-{
-echo "<li>".$query2['post_body']."</li>";
-}
-echo "</ul>";
-$rows=mysqli_num_rows(mysqli_query($conn, "select * from post"));
-$total=ceil($rows/$limit);
 
-if($id>1)
-{
-echo "<a href='?id=".($id-1)."' class='button'>Өмнөх</a>";
-}
-if($id!=$total)
-{
-echo "<a href='?id=".($id+1)."' class='button'>Дараах</a>";
-}
 
-echo "<ul class='page'>";
-for($i=1;$i<=$total;$i++)
-{
-if($i==$id) { echo "<li class='current'>".$i."</li>"; }
-
-else { echo "<li><a href='?id=".$i."'>".$i."</a></li>"; }
-}
-echo "</ul>";
-?>
-</div>
+   <!-- comment xeseg -->
 
 <?php
 $servername = "localhost";
@@ -178,6 +260,11 @@ if ($conn->connect_error) {
           
       
         ?>
+
+
+
+
+
         <div>    
  
  
@@ -200,8 +287,6 @@ if ($conn->connect_error) {
 
     }
 ?>
-
-
 </div> 
 <br>
 <br><br>
@@ -276,7 +361,7 @@ if ($conn->connect_error) {
 </html>
 <center>
   <br>
-  <p><span class="error"><b>ЭНЭ тагыг авахаар хөлний саарал дээш яваад байгаа юмаа ххэ.</b></span></p>
+ 
       
 </center>
 <br>

@@ -1,11 +1,6 @@
 <?php 
 require("header.php");
 ?>
-<html>
-		<body>
-	
-
-
 <?php
 		include_once 'config/config.php';
 		if(isset($_GET['jor']))
@@ -16,19 +11,20 @@ require("header.php");
 				$row = $query->fetch_assoc();
 				//echo $row['post_id']; echo "<br>";
 				//echo " <span class='badge'> "; 
-		 echo " <span class='main'> "; 
-				 echo  $row['post_title'];
-			        echo  $row['post_body'];
-			        echo "<img  src='".$row['image']."'  height='800' width='500'class='img-responsive' target='_blank' alt='Image' >";
-			    //   echo " </span>";    
-     echo " <span> "; 
+	 echo " <div class='main' > "; 
+				echo "<div class='detail-title'>".$row['post_title']."</div>";
+			
+				echo "<div class='detail-body'><img  src='".$row['image']."' 
+			 		class='detail-image' class='img-responsive' target='_blank' alt='Image' >
+			 			"
+			 				.$row['post_body']."</div>";
+					    //   echo " </span>";   
+	 echo " </div> "; 
 			
 			  
-			  }
+	}
 ?>
 
-		<body>    
-</html>
  <?php 
 require("footer.php");
 ?>                                            

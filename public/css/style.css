@@ -7,7 +7,7 @@
   width: 350px;
 }
 .medee {
-  margin: 0 5%;
+  margin: 0 10%;
   text-align: justify;
 }
 
@@ -102,10 +102,6 @@ padding-left: 200px;
     border-radius: 10px;
     float: right;
 }
-.main {
-   
-
-}
 
 .col-sm-3 {
 
@@ -125,7 +121,89 @@ a:hover {
     border-width: thin;
     border-color: #c1b4b4;
 }
+
 .postbox {
-  height: 200px;
+  height: 400px;
   overflow: hidden;
+}
+.postbox-box {
+  height: 278px;
+  overflow: hidden;
+}
+
+.postbox h4{
+  height: auto;
+  max-height: 60px;
+  overflow: hidden;
+}
+.postbox p{
+  height: 100px;
+  overflow: hidden;
+} 
+
+.detail-image {
+  width: 511px !important;
+  height: 278px !important;
+  margin-right: 40px;
+  float: left;
+}
+
+.detail-body {
+  float: left;
+padding-bottom: 50px;
+}
+
+.list-image {
+  width: 300px;
+  
+}
+.detail-title{
+    float: left;
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+.details {
+   float: left;
+   
+
+}
+
+footer {
+  
+    float: left;
+}
+.news {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.news-title {
+  float: left;
+}
+.news-body {
+  float: left;
+}
+.news-image {
+    height: 200px;
+    width: 300px;
+}
+.list {
+position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+  
+    list-style: none;
+  }
+  .list li {
+    padding: 30px;
+    border: 1px solid #000000;
+  }
+a {
+    color: #101010;
+    text-decoration: none;
 }
